@@ -1,58 +1,52 @@
-import React, { useState } from "react";
-import "./styles.css";
-import Input from "../../common/Input";
+import React from "react";
+import { useForm } from "react-hook-form";
 import Button from "../../common/Button";
+import Input from "../../common/Input";
+import "./styles.css";
 const MyProfile = () => {
-  const [formData, setFormData] = useState({
-    fName: "",
-    lName: "",
-    email: "",
-    pNo: "",
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      fName: "",
+      lName: "",
+      email: "",
+      pNo: "",
+    },
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
+  const onSubmit = (data) => {
+    console.log(data);
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Input
           type="text"
           placeholder="First Name"
           label="First Name"
-          onChange={(e) => handleChange(e)}
           name="fName"
+          control={control}
         />
         <Input
           type="text"
           placeholder="Last Name"
           label="Last Name"
-          onChange={(e) => handleChange(e)}
           name="lName"
+          control={control}
         />
         <Input
           type="text"
           placeholder="Enter email"
           label="Email"
-          onChange={(e) => handleChange(e)}
           name="email"
+          control={control}
         />
         <Input
           type="number"
           placeholder="Enter no"
           label="Phone no"
-          onChange={(e) => handleChange(e)}
           name="pNo"
+          control={control}
         />
         <Button label="Submit" />
       </form>

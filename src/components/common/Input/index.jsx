@@ -1,5 +1,6 @@
 import React from "react";
 import "./styles.css";
+import { Controller } from "react-hook-form";
 const Input = ({
   type,
   placeholder,
@@ -8,20 +9,28 @@ const Input = ({
   customStyle,
   name,
   value,
+  control,
 }) => {
   return (
-    <div>
-      {!!label && <label>{label}</label>}
-      <input
-        name={name}
-        type={type}
-        placeholder={placeholder}
-        onChange={onChange}
-        className="input"
-        style={customStyle}
-        value={value}
-      />
-    </div>
+    <Controller
+      render={({ field }) => {
+        return (
+          <div>
+            {!!label && <label>{label}</label>}
+            <input
+              value={field.value}
+              type={type}
+              placeholder={placeholder}
+              className="input"
+              style={customStyle}
+              onChange={field.onChange}
+            />
+          </div>
+        );
+      }}
+      name={name}
+      control={control}
+    />
   );
 };
 

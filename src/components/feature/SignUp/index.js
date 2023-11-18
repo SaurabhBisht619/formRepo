@@ -1,39 +1,40 @@
-import React, { useState } from "react";
-import "./styles.css";
-import Input from "../../common/Input";
+import React from "react";
+import { useForm } from "react-hook-form";
 import Button from "../../common/Button";
+import Input from "../../common/Input";
+import "./styles.css";
 const SigUp = () => {
-  const [formData, setFormData] = useState({});
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      firstName: "",
+      phoneNo: "",
+      password: "",
+    },
+  });
 
-  const showValues = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const getValues = (e) => {
-    e.preventDefault();
-    console.log(formData);
+  const getValues = (data) => {
+    console.log(data);
   };
   return (
     <div className="wrapper">
-      <form className="childWrapper" onSubmit={getValues}>
+      <form className="childWrapper" onSubmit={handleSubmit(getValues)}>
         <Input
           type="text"
           placeholder="First Name"
-          onChange={showValues}
           name="firstName"
+          control={control}
         />
         <Input
           type="tel"
           placeholder="Enter Phone no"
-          onChange={showValues}
           name="phoneNo"
+          control={control}
         />
         <Input
           type="password"
           placeholder="Enter Password"
-          onChange={showValues}
           name="password"
+          control={control}
         />
         <Button label="Get values" />
       </form>

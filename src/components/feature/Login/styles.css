@@ -1,0 +1,27 @@
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* height: 100vh; */
+}
+
+.childWrapper{
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px gray;
+    gap:20px 2%;
+    padding: 10px 20px;
+    margin: auto;
+    width: 500px;
+}
+
+.abc{
+    height: 30px;
+    padding-left: 10px;
+}
+
+.customStyle{
+    border-color: red;
+}

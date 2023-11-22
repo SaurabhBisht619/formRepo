@@ -1,21 +1,20 @@
-import React, { useState } from "react";
-import "./styles.css";
-import { useNavigate } from "react-router-dom";
-import { path } from "../../constants/constant";
-import Input from "../../common/Input";
-import Button from "../../common/Button";
+import React from "react";
 import { Controller, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import Button from "../../common/Button";
+import Input from "../../common/Input";
+import { path } from "../../constants/constant";
+import "./styles.css";
 const Login = () => {
   const navigate = useNavigate();
 
-  const { register, control, handleSubmit, watch, getValues, formState } =
-    useForm({
-      defaultValues: {
-        password: "asdasdas",
-        phno: "sdasdsa",
-        select: "",
-      },
-    });
+  const { control, handleSubmit, getValues, formState, watch } = useForm({
+    defaultValues: {
+      password: "asdasdas",
+      phno: "sdasdsa",
+      select: "",
+    },
+  });
 
   const { errors, isValid } = formState;
 
@@ -60,12 +59,12 @@ const Login = () => {
           name="select"
           control={control}
           rules={{
-            required: "this filed is reqq",
+            required: "this filed is Required",
           }}
         />
-        {/*{watch("select") === "second" && (
+        {watch("select") === "second" && (
           <Button label="Submit" type="submit" />
-        )} */}
+        )}
 
         <Button label="Submit" type="submit" />
       </form>
